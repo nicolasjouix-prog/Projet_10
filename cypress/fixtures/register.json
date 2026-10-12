@@ -1,0 +1,9 @@
+{
+  "email": "test${Date.now()}@test.fr",
+  "firstname": "John",
+  "lastname": "Doe",
+  "plainPassword": {
+    "first": "testtest",
+    "second": "testtest"
+  }
+}
