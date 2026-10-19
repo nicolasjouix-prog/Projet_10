@@ -1,0 +1,12 @@
+# Dépendances Node.js
+node_modules/
+
+# Données locales
+data/
+
+# Fichiers et dossiers MySQL locaux
+mysql/
+
+# Fichiers générés par Cypress
+cypress/screenshots/
+cypress/videos/

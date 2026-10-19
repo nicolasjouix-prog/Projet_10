@@ -1,4 +1,10 @@
 {
+  "name": "eco-bliss-bath-tests",
+  "private": true,
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
   "devDependencies": {
     "cypress": "^16.1.1",
     "typescript": "^7.0.2"
