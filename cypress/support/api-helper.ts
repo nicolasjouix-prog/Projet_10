@@ -11,3 +11,14 @@ export const apiRequest = (method: string, endpoint: string, body?: any) => {
     failOnStatusCode: false,
   });
 };
+
+export const nettoyerPanier = () => {
+  apiRequest('GET', '/orders').then((response) => {
+    const lines = response.body?.orderLines ?? [];
+    lines.forEach((line: { id: number }) => {
+      apiRequest('DELETE', `/orders/${line.id}/delete`).then((deleteResponse) => {
+        expect(deleteResponse.status).to.eq(200);
+      });
+    });
+  });
+};

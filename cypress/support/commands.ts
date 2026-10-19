@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-export const authToken = () => window.localStorage.getItem('authToken');
+export const authToken = () => window.localStorage.getItem('user');
 
 Cypress.Commands.add('loginByApi', (username, password) => {
   cy.session(
@@ -11,7 +11,7 @@ Cypress.Commands.add('loginByApi', (username, password) => {
         password,
       }).then((response) => {
         expect(response.status).to.eq(200);
-        window.localStorage.setItem('authToken', response.body.token);
+        window.localStorage.setItem('user', response.body.token);
       });
     },
     {
