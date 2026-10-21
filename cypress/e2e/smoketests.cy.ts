@@ -14,9 +14,9 @@ it('Vérifier la présence des boutons d’ajout au panier quand vous êtes conn
   cy.get('[data-cy="detail-product-add"]').should('be.visible');
 });
 
-it('Faille xss dans la section commentaire', () => {
+it('Faille xss dans la section commentaire : non active', () => {
     const title = `TEST XSS ${Date.now()}`;
-    const comment = "<script>alert('XSS_COMMENTAIRE')</script>";
+    const comment = "<img src=x onerror=alert('XSS_COMMENTAIRE')>";
     const stub = cy.stub().as("alerte");
     cy.on('window:alert', stub);
 
@@ -31,6 +31,7 @@ it('Faille xss dans la section commentaire', () => {
 
     cy.wait('@reqFaille').its('response.statusCode').should('eq', 200);
     cy.get('[data-cy="review-detail"]').should('contain', title);
-    cy.get('[data-cy="review-detail"]').find('script').should('not.exist');
+    cy.get('[data-cy="review-detail"]').find('[onerror]').should('not.exist');
+    cy.wait(1000); // délai d'évènement onerror, on veut prouver que ça n'arrive pas alors on lui laisse le temps d'arriver
     cy.get('@alerte').should('not.have.been.called');
 });

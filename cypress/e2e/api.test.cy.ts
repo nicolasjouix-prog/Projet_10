@@ -37,6 +37,7 @@ describe('Test API avec GET', () => {
   });
 
   it('Récupération de la liste des produits dans le panier', () => {
+  cy.intercept('GET', '/orders').as('getOrders');
   apiRequest('GET', '/orders').then((response) => {
     expect(response.status).to.eq(200);
     expect(response.body).to.have.property('orderLines'); 
