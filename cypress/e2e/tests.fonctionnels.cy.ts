@@ -1,4 +1,4 @@
-import { apiRequest, nettoyerPanier } from "../support/api-helper";
+import { apiRequest, nettoyerPanier, identifiant } from "../support/api-helper";
 
 describe('Test du parcours utilisateur de connexion', () => {
   it('Test du parcours utilisateur de connexion', () => {
@@ -14,8 +14,7 @@ describe('Test du parcours utilisateur de connexion', () => {
 
 describe('Tests fonctionnels du panier', () => {
   beforeEach(() => {
-    const username = 'test2@test.fr';
-    const password = 'testtest';
+    const {username, password} = identifiant();
     cy.loginByApi(username, password).then(() => {
       nettoyerPanier();
     });

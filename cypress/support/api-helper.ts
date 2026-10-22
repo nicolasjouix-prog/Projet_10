@@ -22,3 +22,10 @@ export const nettoyerPanier = () => {
     });
   });
 };
+
+export function identifiant() {
+  return {
+    username : 'test2@test.fr',
+    password : 'testtest'
+  };
+}

@@ -1,5 +1,6 @@
-const username = 'test2@test.fr';
-const password = 'testtest';
+import { identifiant } from "../support/api-helper";
+
+const { username, password } = identifiant();
 
 it('Vérifier la présence des champs et boutons de connexion', () => {
   cy.visit('/#/login');
