@@ -37,4 +37,31 @@ npm i
 ou
 npm install (si vous préférez)
 ```
+# Pour démarrer les tests avec Cypress
+Les tests s'exécutent sur l'application démarrée : l'API (http://localhost:8081) et le front (http://localhost:4200) doivent tourner avant de lancer cypress.
 
+Démarrer le front (depuis le dossier 'frontend', dans le terminal qui reste ouvert) :
+```
+npm start
+```
+Cloner le dépôt de tests, dans un dossier séparé de l'application :
+```
+git clone https://github.com/nicolasjouix-prog/Projet_10
+cd Projet_10
+```
+Installer les dépendances :
+```
+npm i
+```
+Lancer les tests :
+```
+npx cypress open
+```
+## Informations utiles
+- Compte de test : 'test2@test.fr' / 'testtest'
+- Les tests sont dans 'cypress/e2e/' :
+  - 'api.test.cy.ts' : tests API
+  - 'smoketests.cy.ts' : smoke tests et test XSS
+  - 'tests.fonctionnels.cy.ts' : connexion et panier
+- Les tests sont écrits en TypeScript.
+- Deux tests échouent volontairement : l'ajout d'un produit en rupture de stock et la limite de 20 articles. Ils révèlent des anomalies de l'application (voir le bilan de campagne).
