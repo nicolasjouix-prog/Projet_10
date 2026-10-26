@@ -37,7 +37,6 @@ describe('Utilisateur connecté', () => {
   describe('Test API avec GET', () => {
 
     it('Récupération de la liste des produits dans le panier', () => {
-    cy.intercept('GET', '/orders').as('getOrders');
     apiRequest('GET', '/orders').then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body).to.have.property('orderLines'); 
@@ -64,7 +63,7 @@ describe('Utilisateur connecté', () => {
     beforeEach("Connexion de l'utilisateur", () => {
       nettoyerPanier();
       // cypress est asynchrone, les commandes cy. sont mises en attente. nettoyerPanier() dépend de
-      // cy.loginByApi. Il fallait donc l'enchainer avec .then
+      // cy.loginByApi. Force la fonction à s'exécuter après la connexion.
   });
     it("Ajout d'un produit disponible au panier", () => {
       cy.fixture('addDispoArticle').then((addDispoArticle) => {
